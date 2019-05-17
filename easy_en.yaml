@@ -1,0 +1,11 @@
+# encoding: utf-8
+---
+patch:
+  "schema/dependencies/@next": easy_en
+  "engine/translators/@next": table_translator@easy_en
+  easy_en:
+    dictionary: easy_en
+    spelling_hints: 9
+    enable_completion: true
+    enable_sentence: true
+    initial_quality: -1

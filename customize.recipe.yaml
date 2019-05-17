@@ -1,0 +1,15 @@
+# encoding: utf-8
+---
+recipe:
+  Rx: customize
+  args:
+    - schema=luna_pinyin
+  install_files: >-
+    *.schema.yaml
+    *.dict.yaml
+  description: >-
+    Customize input schema to show english suggestion
+patch_files:
+  ${schema:-luna_pinyin}.custom.yaml:
+    - patch/+:
+        __include: easy_en:/patch
