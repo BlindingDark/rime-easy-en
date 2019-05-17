@@ -4,11 +4,14 @@ recipe:
   Rx: customize
   args:
     - schema=luna_pinyin
-  install_files: >-
-    *.schema.yaml
-    *.dict.yaml
   description: >-
     Customize input schema to show english suggestion
+
+install_files: >-
+  easy_en.schema.yaml
+  easy_en.dict.yaml
+  easy_en.yaml
+
 patch_files:
   ${schema:-luna_pinyin}.custom.yaml:
     - patch/+:
