@@ -14,7 +14,7 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ ASCII-ON, ASCII-OFF ]
+    states: [ ASCII-OFF, ASCII-ON ]
 
 engine:
   processors:
