@@ -26,3 +26,5 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 ## 感谢
 
 easy_en 原作者 [Patricivs](https://github.com/Patricivs)
+
+[ECDICT](https://github.com/skywind3000/ECDICT)
