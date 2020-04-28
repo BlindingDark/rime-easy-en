@@ -45,7 +45,6 @@ speller:
 translator:
   dictionary: easy_en
   spelling_hints: 9
-  enable_encoder: false
   enable_sentence: false
   comment_format:
     - xform/^.+$//
