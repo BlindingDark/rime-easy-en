@@ -5,7 +5,7 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: "0.3"
+  version: "0.4"
   author:
     - Patrick <ipatrickmac@gmail.com>
   description:
@@ -45,6 +45,8 @@ speller:
 translator:
   dictionary: easy_en
   spelling_hints: 9
+  enable_encoder: false
+  enable_sentence: false
   comment_format:
     - xform/^.+$//
 
