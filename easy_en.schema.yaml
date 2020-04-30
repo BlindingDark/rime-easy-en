@@ -38,6 +38,7 @@ engine:
     - punct_translator
   filters:
     - uniquifier
+    - lua_filter@append_blank_filter
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-_
