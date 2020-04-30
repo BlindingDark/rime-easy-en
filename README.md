@@ -23,11 +23,44 @@ schema_list:
 bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 ```
 
+若想更新到最新版，则重复执行安装命令即可。
+
+### 连续输入增强
+
+![](images/continuous-input-enhancement.gif)
+
+连续输入增强功能可以允许你在单独使用 easy-en 时连续输入单词后，选词时在每个单词后自动增加空格。目前由于技术限制，使用该功能后选词调频将无法生效。
+
+连续输入增强功能依托于 [RIME Lua 脚本扩展](https://github.com/hchunhui/librime-lua)，请升级 rime 到最新版以确保可以使用该扩展。
+Linux 用户需要安装带有 lua 扩展的 librime 版本，以下是部分发行版的安装方式
+
+- ArchLinux (AUR)
+  ``` shell
+  yay -S librime-lua-git
+  ```
+
+Linux 用户也可以按照[这里的说明](https://github.com/hchunhui/librime-lua#instructions)进行编译安装
+
+#### 安装连续输入增强功能
+
+由于 plum 目前还不能自动化安装 lua 脚本，所以使用连续输入增强需要按以下步骤手动修改一些配置
+
+1. 复制本项目中的 [lua/easy_en.lua](lua/easy_en.lua) 到你的 rime 配置目录下的 `lua` 文件夹中，若 `lua` 文件夹不存在可手动创建。
+1. 在 rime 配置目录下的 `rime.lua` 中添加以下内容，`rime.lua` 文件不存在可手动创建。
+   ``` lua
+   -- append_blank_filter: 在单词后增加空格
+   -- 详见 `lua/easy_en.lua`
+   local easy_en = require("easy_en")
+   append_blank_filter = easy_en.append_blank_filter
+   ```
+
+以上步骤都做好之后重新部署 rime 即可生效。
+
 ## 卸载
 
 1. 删除位于 `plum/package/` 下的 easy_en git 仓库
 1. 删除 `default.yaml` schema_list 中的 easy_en
-1. 删除 `rime` 用户文件夹下 easy_en 开头的文件
+1. 删除 `rime` 配置目录下 easy_en 开头的文件
 1. 如果使用了混输，还需要删除对应方案的 `custom.yaml` 下 `__patch` 中的如下内容
    ```yaml
    # Rx: BlindingDark/rime-easy-en:customize:schema=double_pinyin {
@@ -35,6 +68,7 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
          __include: easy_en:/patch
    # }
    ```
+1. 如果使用了连续输入增强，还需要删除 `rime` 配置目录下的 `lua/easy_en.lua`，以及 `rime.lua` 中添加的脚本内容
 1. 重新部署 rime
 
 ## 问题
@@ -49,26 +83,29 @@ patch:
   easy_en/enable_sentence: false
 ```
 
-### 英文模式下无法连续输入英文单词
+### 未使用连续输入增强功能时，英文模式下出现带有☯图案的无意义单词
 
-在单独把 easy_en 作为主要输入模式（非混输模式）时，造句功能默认是关闭的。  
-若开启了造句功能，则会导致无意义的词出现在候选列表中，好处是可以连续输入英文单词，不过英文单词之间不会自动加上空格。  
-你可以在 `easy_en.custom.yaml` 的 `patch` 节点中添加开启造句功能的选项。  
+这是因为开启了造句功能而导致的，连续输入 lua 脚本需依靠该功能才能工作（开启 lua 脚本后会自动隐藏这些单词）。  
+若是你没有使用连续输入 lua 脚本，又不想看到这些无意义单词，可以在 `easy_en.custom.yaml` 的 `patch` 节点中添加选项以关闭造句功能。  
 
 ```yaml
 patch:
-  translator/enable_sentence: true
+  translator/enable_sentence: false
 ```
 
 ### 疑难
 
-以下是目前未能实现的功能，欢迎分享你的办法！
+以下是目前未能解决的问题，欢迎讨论！
 
-- 连续输入英文单词时自动在单词之间加入空格
-- 记住用户自造的英文单词
+- 使用连续输入增强则无法调频  
+  因目前加空格的实现方案受限于 librime-lua 的技术性限制 [librime-lua#11](https://github.com/hchunhui/librime-lua/issues/11)
+- 无法记住用户自造的英文单词  
+  没找到原因，欢迎指教
 
 ## 感谢
 
-easy_en 原作者 [Patricivs](https://github.com/Patricivs)
+easy_en 原作者 [Patricivs](https://github.com/Patricivs)  
 
-[ECDICT](https://github.com/skywind3000/ECDICT)
+[ECDICT](https://github.com/skywind3000/ECDICT)  
+
+YOU!
