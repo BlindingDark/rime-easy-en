@@ -11,7 +11,6 @@ install_files: >-
   easy_en.schema.yaml
   easy_en.dict.yaml
   easy_en.yaml
-  # Unable to copy .lua file due to plum restrictions
   lua/easy_en.lua
 
 patch_files:

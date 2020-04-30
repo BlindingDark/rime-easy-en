@@ -43,16 +43,14 @@ Linux 用户也可以按照[这里的说明](https://github.com/hchunhui/librime
 
 #### 安装连续输入增强功能
 
-由于 plum 目前还不能自动化安装 lua 脚本，所以使用连续输入增强需要按以下步骤手动修改一些配置
+由于 plum 目前还不能自动引入 lua 脚本，所以在使用连续输入增强之前还需要手动在 rime 配置目录下的 `rime.lua` 文件中添加以下内容，`rime.lua` 文件不存在可手动创建。
 
-1. 复制本项目中的 [lua/easy_en.lua](lua/easy_en.lua) 到你的 rime 配置目录下的 `lua` 文件夹中，若 `lua` 文件夹不存在可手动创建。
-1. 在 rime 配置目录下的 `rime.lua` 中添加以下内容，`rime.lua` 文件不存在可手动创建。
-   ``` lua
-   -- append_blank_filter: 在单词后增加空格
-   -- 详见 `lua/easy_en.lua`
-   local easy_en = require("easy_en")
-   append_blank_filter = easy_en.append_blank_filter
-   ```
+``` lua
+-- append_blank_filter: 在单词后增加空格
+-- 详见 `lua/easy_en.lua`
+local easy_en = require("easy_en")
+append_blank_filter = easy_en.append_blank_filter
+```
 
 以上步骤都做好之后重新部署 rime 即可生效。
 
