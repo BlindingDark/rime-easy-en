@@ -5,7 +5,7 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: "0.5"
+  version: "0.6"
   author:
     - Patrick <ipatrickmac@gmail.com>
     - BlindingDark <blindingdark@outlook.com>
@@ -41,7 +41,7 @@ engine:
     - lua_filter@append_blank_filter
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-_
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
 
 translator:
@@ -51,9 +51,6 @@ translator:
     - xform/^.+$//
 
 key_binder:
-  import_preset: default
-
-punctuator:
   import_preset: default
 
 recognizer:
