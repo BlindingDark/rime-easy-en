@@ -34,10 +34,11 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 连续输入增强功能依托于 [RIME Lua 脚本扩展](https://github.com/hchunhui/librime-lua)，请升级 rime 到最新版以确保可以使用该扩展。
 Linux 用户需要安装带有 lua 扩展的 librime 版本，以下是部分发行版的安装方式
 
-- ArchLinux (AUR)
+- ArchLinux
   ``` shell
-  yay -S librime-lua-git
+  yay -S librime
   ```
+  推荐使用 fcitx5 并配合 fcitx5-configtool 在 GUI 下设置开启 lua 插件。
 
 Linux 用户也可以按照[这里的说明](https://github.com/hchunhui/librime-lua#instructions)进行编译安装
 
