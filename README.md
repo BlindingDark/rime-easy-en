@@ -42,15 +42,21 @@ Linux 用户需要安装带有 lua 扩展的 librime 版本，以下是部分发
 
 Linux 用户也可以按照[这里的说明](https://github.com/hchunhui/librime-lua#instructions)进行编译安装
 
+分词功能依赖 [wordninja](https://github.com/keredson/wordninja)，这是一个 python 程序，你可以使用 `pip` 来安装它。
+
+``` shell
+pip install wordninja
+```
+
 #### 安装连续输入增强功能
 
 由于 plum 目前还不能自动引入 lua 脚本，所以在使用连续输入增强之前还需要手动在 rime 配置目录下的 `rime.lua` 文件中添加以下内容，`rime.lua` 文件不存在可手动创建。
 
 ``` lua
--- append_blank_filter: 在单词后增加空格
+-- easy_en_enhance_filter: 连续输入增强
 -- 详见 `lua/easy_en.lua`
 local easy_en = require("easy_en")
-append_blank_filter = easy_en.append_blank_filter
+easy_en_enhance_filter = easy_en.enhance_filter
 ```
 
 以上步骤都做好之后重新部署 rime 即可生效。
@@ -92,6 +98,15 @@ patch:
   translator/enable_sentence: false
 ```
 
+### 连续输入增强功能太卡/如何关闭连续输入增强的分词功能
+
+你可以在 `easy_en.custom.yaml` 的 `patch` 节点中添加选项以关闭分词功能。  
+
+```yaml
+patch:
+  easy_en/split_sentence: false
+```
+
 ### 疑难
 
 以下是目前未能解决的问题，欢迎讨论！
@@ -100,11 +115,15 @@ patch:
   因目前加空格的实现方案受限于 librime-lua 的技术性限制 [librime-lua#11](https://github.com/hchunhui/librime-lua/issues/11)
 - 无法记住用户自造的英文单词  
   没找到原因，欢迎指教
+- 调用 python 的速度不够快  
+  以后的版本可能会尝试开后台进程避免每次执行都要加载代码
 
 ## 感谢
 
 easy_en 原作者 [Patricivs](https://github.com/Patricivs)  
 
 [ECDICT](https://github.com/skywind3000/ECDICT)  
+
+[wordninja](https://github.com/keredson/wordninja)  
 
 YOU!

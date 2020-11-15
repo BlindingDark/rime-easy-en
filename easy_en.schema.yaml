@@ -5,12 +5,15 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: "0.6"
+  version: "0.7"
   author:
     - Patrick <ipatrickmac@gmail.com>
     - BlindingDark <blindingdark@outlook.com>
   description:
     Easy English
+
+easy_en:
+  split_sentence: true
 
 switches:
   - name: ascii_mode
@@ -38,7 +41,7 @@ engine:
     - punct_translator
   filters:
     - uniquifier
-    - lua_filter@append_blank_filter
+    - lua_filter@easy_en_enhance_filter
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
