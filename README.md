@@ -61,6 +61,18 @@ easy_en_enhance_filter = easy_en.enhance_filter
 
 以上步骤都做好之后重新部署 rime 即可生效。
 
+#### 不使用连续输入增强
+
+你可以在 `easy_en.custom.yaml` 的 `patch` 节点中添加选项以关闭连续输入增强功能。  
+
+```yaml
+patch:
+  engine/filters:
+    - uniquifier
+```
+
+在某些系统上，若不按招类似上述方式手动关闭连续输入增强，即使没有引入 lua 脚本也会导致 easy_en 无法正常使用。
+
 ## 卸载
 
 1. 删除位于 `plum/package/` 下的 easy_en git 仓库
@@ -90,8 +102,8 @@ patch:
 
 ### 未使用连续输入增强功能时，英文模式下出现带有☯图案的无意义单词
 
-这是因为开启了造句功能而导致的，连续输入 lua 脚本需依靠该功能才能工作（开启 lua 脚本后会自动隐藏这些单词）。  
-若是你没有使用连续输入 lua 脚本，又不想看到这些无意义单词，可以在 `easy_en.custom.yaml` 的 `patch` 节点中添加选项以关闭造句功能。  
+这是因为开启了造句功能而导致的，连续输入增强需依靠该功能才能工作（开启连续输入增强后会自动隐藏这些单词）。  
+若是你没有使用连续输入增强，又不想看到这些无意义单词，可以在 `easy_en.custom.yaml` 的 `patch` 节点中添加选项以关闭造句功能。  
 
 ```yaml
 patch:
