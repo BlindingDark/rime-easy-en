@@ -25,6 +25,17 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 
 若想更新到最新版，则重复执行安装命令即可。
 
+### 手动安装
+
+将 `easy_en.schema.yaml` `easy_en.dict.yaml` `easy_en.yaml` `lua/easy_en.lua` 复制到 rime 配置目录。  
+
+如果想要中英混输效果，以朙月拼音（luna_pinyin）为例，需要在 `luna_pinyin.custom.yaml` 文件中的 `patch` 下添加 `__include: easy_en:/patch`，效果如下  
+
+``` yaml
+patch:
+  __include: easy_en:/patch
+```
+
 ### 连续输入增强
 
 ![](images/continuous-input-enhancement.gif)
