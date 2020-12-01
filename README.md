@@ -132,14 +132,15 @@ patch:
 
 ### 混输时英文单词排的太靠后
 
-例如你想调整 luna_pinyin 英文单词在候选项中显示的位置，就可以在 `luna_pinyin.custom.yaml` 中调整 `initial_quality` 选项以调节排序优先级。  
+你可以通过调整 `initial_quality` 选项来调节英文单词在候选项中显示的位置。  
+例如你想调整 luna_pinyin 的英文单词排序位置，就可以在 `luna_pinyin.custom.yaml` 中做如下设置  
 
 ```yaml
 patch:
   easy_en/initial_quality: 0
 ```
 
-可以尝试 0 到 0.5 左右的数值。数值**越大**，英文单词出现的就**越靠前**。  
+easy_en 对此项的默认设置为 -1，你可以尝试 0 到 0.5 左右的数值。数值**越大**，英文单词出现的就**越靠前**。  
 
 ### 疑难
 
