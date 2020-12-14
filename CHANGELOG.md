@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8
+
+### new
+
+* 分词  
+  使用新的快速分词程序 [wordninja-rs](https://github.com/chengyuhui/wordninja-rs)  
+  引入配置 `easy_en/wordninja_rs_path` 指定 `wordninja-rs` 的可执行文件路径  
+  如不指定此选项，则会使用之前的 [wordninja](https://github.com/keredson/wordninja) 进行分词
+
 ## 0.7
 
 ### new

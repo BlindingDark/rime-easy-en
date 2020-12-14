@@ -53,11 +53,35 @@ Linux 用户需要安装带有 lua 扩展的 librime 版本，以下是部分发
 
 Linux 用户也可以按照[这里的说明](https://github.com/hchunhui/librime-lua#instructions)进行编译安装
 
-分词功能依赖 [wordninja](https://github.com/keredson/wordninja)，这是一个 python 程序，你可以使用 `pip` 来安装它。
+#### 安装分词程序
+
+##### wordninja rust
+
+分词功能使用 [wordninja-rs](https://github.com/chengyuhui/wordninja-rs) 进行工作，这是一个 rust 程序，你可以参照下面的步骤进行手动编译。
+
+``` shell
+git clone --depth=1 https://github.com/chengyuhui/wordninja-rs
+cd wordninja-rs
+cargo build --release
+```
+
+编译完毕之后， 当前目录下的 `target/release/wordninja` 即为相应的可执行程序。  
+接下来需要在 `easy_en.custom.yaml` 的 `patch` 节点中添加 `easy_en/wordninja_rs_path` 选项指定程序路径：  
+
+``` yaml
+patch:
+  easy_en/wordninja_rs_path: "/SOME/PATH/wordninja-rs/target/release/wordninja"
+```
+
+##### wordninja (python)
+
+如果不指定 `easy_en/wordninja_rs_path`，则 easy_en 会尝试使用 [wordninja](https://github.com/keredson/wordninja) 进行分词，这是一个 python 程序，你可以使用 `pip` 来安装它。  
 
 ``` shell
 pip install wordninja
 ```
+
+安装完毕之后无需进行配置即可使用 wordninja (python) 进行分词，但是它比 wordninja-rs 要慢上很多倍。
 
 #### 安装连续输入增强功能
 
@@ -150,14 +174,14 @@ easy_en 对此项的默认设置为 -1，你可以尝试 0 到 0.5 左右的数�
   因目前加空格的实现方案受限于 librime-lua 的技术性限制 [librime-lua#11](https://github.com/hchunhui/librime-lua/issues/11)
 - 无法记住用户自造的英文单词  
   没找到原因，欢迎指教
-- 调用 python 的速度不够快  
-  以后的版本可能会尝试开后台进程避免每次执行都要加载代码
 
 ## 感谢
 
 easy_en 原作者 [Patricivs](https://github.com/Patricivs)  
 
 [ECDICT](https://github.com/skywind3000/ECDICT)  
+
+[wordninja-rs](https://github.com/chengyuhui/wordninja-rs)  
 
 [wordninja](https://github.com/keredson/wordninja)  
 

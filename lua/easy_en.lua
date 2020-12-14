@@ -5,8 +5,22 @@ local function capture(cmd)
    return s
 end
 
-local function split_sentence(sentence)
+local function split_sentence_wordninja_py(sentence)
    return capture([[python -c "import sys; import wordninja; sys.stdout.write(' '.join(wordninja.split(']] .. sentence .. [[')))"]])
+end
+
+local function split_sentence_wordninja_rs(sentence, wordninja_rs_path)
+   return capture(wordninja_rs_path .. " -n " .. sentence)
+end
+
+local function split_sentence(sentence, env)
+   local wordninja_rs_path = env.engine.schema.config:get_string('easy_en/wordninja_rs_path')
+
+   if (wordninja_rs_path) then
+      return split_sentence_wordninja_rs(sentence, wordninja_rs_path)
+   else
+      return split_sentence_wordninja_py(sentence)
+   end
 end
 
 local function enhance_filter(input, env)
@@ -16,7 +30,7 @@ local function enhance_filter(input, env)
    for cand in input:iter() do
       if (cand.comment:find("☯")) then
          if (is_split_sentence) then
-            sentence = split_sentence(cand.text)
+            sentence = split_sentence(cand.text, env)
             lower_sentence = string.lower(sentence)
 
             if (not (lower_sentence == sentence)) then
