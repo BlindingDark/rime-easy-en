@@ -57,7 +57,15 @@ Linux 用户也可以按照[这里的说明](https://github.com/hchunhui/librime
 
 ##### wordninja rust
 
-分词功能使用 [wordninja-rs](https://github.com/chengyuhui/wordninja-rs) 进行工作，这是一个 rust 程序，你可以参照下面的步骤进行手动编译。
+分词功能依赖 [wordninja-rs](https://github.com/chengyuhui/wordninja-rs) 进行工作。  
+以下是部分发行版的安装方式
+
+- ArchLinux (AUR)
+  ``` shell
+  yay -S wordninja-rs
+  ```
+
+你也可以参照下面的步骤进行手动编译配置
 
 ``` shell
 git clone --depth=1 https://github.com/chengyuhui/wordninja-rs
@@ -66,7 +74,7 @@ cargo build --release
 ```
 
 编译完毕之后， 当前目录下的 `target/release/wordninja` 即为相应的可执行程序。  
-接下来需要在 `easy_en.custom.yaml` 的 `patch` 节点中添加 `easy_en/wordninja_rs_path` 选项指定程序路径：  
+接下来可以在 `easy_en.custom.yaml` 的 `patch` 节点中添加 `easy_en/wordninja_rs_path` 选项，以指定程序路径（不指定时的默认路径为 `/usr/bin/wordninja`）  
 
 ``` yaml
 patch:
@@ -75,13 +83,14 @@ patch:
 
 ##### wordninja (python)
 
-如果不指定 `easy_en/wordninja_rs_path`，则 easy_en 会尝试使用 [wordninja](https://github.com/keredson/wordninja) 进行分词，这是一个 python 程序，你可以使用 `pip` 来安装它。  
+如果设置 `easy_en/use_wordninja_rs` 的值为 `false`，则 easy_en 会尝试使用 [wordninja](https://github.com/keredson/wordninja) 进行分词，你可以使用 `pip` 来安装它。  
 
 ``` shell
 pip install wordninja
 ```
 
-安装完毕之后无需进行配置即可使用 wordninja (python) 进行分词，但是它比 wordninja-rs 要慢上很多倍。
+安装完毕之后无需进行额外配置。  
+注意，wordninja (python) 要比 wordninja-rs 慢上很多倍。
 
 #### 安装连续输入增强功能
 

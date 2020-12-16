@@ -14,9 +14,10 @@ local function split_sentence_wordninja_rs(sentence, wordninja_rs_path)
 end
 
 local function split_sentence(sentence, env)
-   local wordninja_rs_path = env.engine.schema.config:get_string('easy_en/wordninja_rs_path')
+   local use_wordninja_rs = env.engine.schema.config:get_bool('easy_en/use_wordninja_rs')
 
-   if (wordninja_rs_path) then
+   if (use_wordninja_rs) then
+      local wordninja_rs_path = env.engine.schema.config:get_string('easy_en/wordninja_rs_path')
       return split_sentence_wordninja_rs(sentence, wordninja_rs_path)
    else
       return split_sentence_wordninja_py(sentence)

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.1
+
+### new
+
+* 配置  
+  - 新增 `use_wordninja_rs` 配置，默认值为 `true`
+  - 设置 `easy_en/wordninja_rs_path` 的默认值为 `"/usr/bin/wordninja"`
+
 ## 0.8
 
 ### new

@@ -5,7 +5,7 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: "0.8"
+  version: "0.8.1"
   author:
     - Patrick <ipatrickmac@gmail.com>
     - BlindingDark <blindingdark@outlook.com>
@@ -14,6 +14,8 @@ schema:
 
 easy_en:
   split_sentence: true
+  use_wordninja_rs: true
+  wordninja_rs_path: "/usr/bin/wordninja"
 
 switches:
   - name: ascii_mode
