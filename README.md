@@ -2,19 +2,22 @@
 Rime / Easy English 可混输的英文输入法
 
 ## 安装
+
+### 使用 plum 安装 easy_en
+
 [东风破](https://github.com/rime/plum) 安装口令：
 
 ``` shell
 bash rime-install BlindingDark/rime-easy-en
 ```
 
-你可以将 easy_en 加入候选列表中，修改 `default.yaml`
+安装完毕后，你就可以将 easy_en 加入候选方案中使用了
 
 ``` yaml
 schema_list:
   - schema: double_pinyin
   - schema: luna_pinyin_simp
-  - schema: easy_en
+  - schema: easy_en # 添加英文输入法
 ```
 
 如果想要中英混输效果，以朙月拼音（luna_pinyin）为例，可执行以下命令：
@@ -24,30 +27,6 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 ```
 
 若想更新到最新版，则重复执行安装命令即可。
-
-### 手动安装
-
-**本节内容仅为手动安装所需要进行的步骤，如果你使用 `plum` 进行安装，则不需要进行下面的操作**
-
-将 `easy_en.schema.yaml` `easy_en.dict.yaml` `easy_en.yaml` `lua/easy_en.lua` 复制到 rime 配置目录。  
-
-如果想要中英混输效果，以朙月拼音（luna_pinyin）为例，需要在 `luna_pinyin.custom.yaml` 文件中的 `patch` 下添加 `__include: easy_en:/patch`，效果如下  
-
-``` yaml
-patch:
-  __include: easy_en:/patch
-```
-
-某些特殊方案需要指定方案名称，如微软双拼  
-
-``` yaml
-patch:
-  __include: easy_en:/patch_double_pinyin_mspy
-```
-
-以下是需要指定名称的方案  
-
-- 微软双拼 `easy_en:/patch_double_pinyin_mspy`
 
 ### 连续输入增强
 
@@ -129,6 +108,31 @@ patch:
 ```
 
 在某些系统上，若不按照类似上述方式手动关闭连续输入增强，即使没有引入 lua 脚本也会导致 easy_en 无法正常使用。
+
+### 手动安装 easy_en
+
+本节内容仅为手动安装所需要进行的步骤，如果你使用 `plum` 进行安装，则不需要进行下面的操作。  
+连续输入增强的安装方式请参照上面的说明。  
+
+将 `easy_en.schema.yaml` `easy_en.dict.yaml` `easy_en.yaml` `lua/easy_en.lua` 复制到 rime 配置目录。  
+
+如果想要中英混输效果，以朙月拼音（luna_pinyin）为例，需要在 `luna_pinyin.custom.yaml` 文件中的 `patch` 下添加 `__include: easy_en:/patch`，效果如下  
+
+``` yaml
+patch:
+  __include: easy_en:/patch
+```
+
+某些特殊方案需要指定方案名称，如微软双拼  
+
+``` yaml
+patch:
+  __include: easy_en:/patch_double_pinyin_mspy
+```
+
+以下是需要指定名称的方案  
+
+- 微软双拼 `easy_en:/patch_double_pinyin_mspy`
 
 ## 卸载
 
