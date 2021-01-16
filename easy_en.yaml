@@ -14,4 +14,4 @@ patch:
 
 patch_double_pinyin_mspy:
   speller/alphabet:
-    __include: "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;"
+    "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;"

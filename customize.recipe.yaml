@@ -17,4 +17,5 @@ patch_files:
   ${schema:-luna_pinyin}.custom.yaml:
     - patch/+:
         __include: easy_en:/patch
+    - patch/+:
         __include: easy_en:/patch_${schema:-luna_pinyin}
