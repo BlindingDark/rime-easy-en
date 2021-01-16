@@ -11,3 +11,7 @@ patch:
   recognizer/patterns/uppercase: ''
   speller/alphabet:
     __include: easy_en.schema:/speller/alphabet
+
+patch_double_pinyin_mspy:
+  speller/alphabet:
+    __include: "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;"

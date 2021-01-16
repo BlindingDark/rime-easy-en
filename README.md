@@ -34,6 +34,7 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 ``` yaml
 patch:
   __include: easy_en:/patch
+  __include: easy_en:/patch_luna_pinyin
 ```
 
 ### 连续输入增强
