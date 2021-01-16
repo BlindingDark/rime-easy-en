@@ -16,6 +16,4 @@ install_files: >-
 patch_files:
   ${schema:-luna_pinyin}.custom.yaml:
     - patch/+:
-        __include: easy_en:/patch
-    - patch/+:
-        __include: easy_en:/patch_${schema:-luna_pinyin}
+        __include: easy_en:/$(if [[ $schema =~ ^(double_pinyin_mspy|special_schema)$ ]]; then echo "patch_${schema}"; else echo "patch"; fi)

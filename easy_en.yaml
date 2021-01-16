@@ -1,5 +1,10 @@
 # encoding: utf-8
 ---
+patch_double_pinyin_mspy:
+  __include: patch
+  speller/alphabet:
+    "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;"
+
 patch:
   schema/dependencies/@next: easy_en
   engine/translators/@next: table_translator@easy_en
@@ -11,7 +16,3 @@ patch:
   recognizer/patterns/uppercase: ''
   speller/alphabet:
     __include: easy_en.schema:/speller/alphabet
-
-patch_double_pinyin_mspy:
-  speller/alphabet:
-    "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;"

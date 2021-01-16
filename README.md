@@ -27,6 +27,8 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 
 ### 手动安装
 
+**本节内容仅为手动安装所需要进行的步骤，如果你使用 `plum` 进行安装，则不需要进行下面的操作**
+
 将 `easy_en.schema.yaml` `easy_en.dict.yaml` `easy_en.yaml` `lua/easy_en.lua` 复制到 rime 配置目录。  
 
 如果想要中英混输效果，以朙月拼音（luna_pinyin）为例，需要在 `luna_pinyin.custom.yaml` 文件中的 `patch` 下添加 `__include: easy_en:/patch`，效果如下  
@@ -35,6 +37,17 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 patch:
   __include: easy_en:/patch
 ```
+
+某些特殊方案需要指定方案名称，如微软双拼  
+
+``` yaml
+patch:
+  __include: easy_en:/patch_double_pinyin_mspy
+```
+
+以下是需要指定名称的方案  
+
+- 微软双拼 `easy_en:/patch_double_pinyin_mspy`
 
 ### 连续输入增强
 
