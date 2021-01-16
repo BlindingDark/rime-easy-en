@@ -5,7 +5,7 @@
 ### new / fix
 
 * patch  
-  - 新增针对 `double_pinyin_mspy` 的特定配置 (fix #22)
+  - 新增针对 `double_pinyin_mspy` 的特定配置 (fix [#22](https://github.com/BlindingDark/rime-easy-en/issues/22))
 
 ## 0.8.1
 
