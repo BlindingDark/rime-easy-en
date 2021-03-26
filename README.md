@@ -82,7 +82,7 @@ patch:
   ```
 
 * Windows  
-  将 `lua53.dll` 解压到 weasel 目录（右键点击 rime 托盘后，选择 `程序文件夹`即可打开 weasel 目录）  
+  将 `lua53.dll` 解压到 weasel 目录（右键点击 rime 托盘后，选择 `程序文件夹` 即可打开 weasel 目录）  
   你可以点击[这里](https://sourceforge.net/projects/luabinaries/files/5.3.6/Windows%20Libraries/Dynamic/lua-5.3.6_Win32_dllw6_lib.zip/download)下载，解压后即可获取到 `lua53.dll`  
 
 ##### wordninja rust
@@ -107,7 +107,7 @@ cargo build --release
 
 接下来需要在 `easy_en.custom.yaml` 的 `patch` 节点中添加 `easy_en/wordninja_rs_path` 选项，以指定程序路径（不指定时的默认路径为 `/usr/bin/wordninja`）  
 然后添加 `easy_en/use_wordninja_rs` 选项开启分词  
-注意，Windows 系统下配置路径也应该使用 `/` 而不应该使用 `\\` 作为路径分隔符  
+注意，Windows 系统下配置路径也应该使用 `/` 而不应该使用 `\` 作为路径分隔符  
 
 ``` yaml
 patch:
