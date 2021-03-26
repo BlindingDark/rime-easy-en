@@ -60,7 +60,7 @@ easy_en 可以使用 [wordninja-rs-lua](https://github.com/BlindingDark/wordninj
   yay -S wordninja-rs-lua
   ```
 
-你也可以去项目的 [release](https://github.com/BlindingDark/wordninja-rs-lua) 页面下载编译好的程序，或者参照项目说明进行手动编译。  
+你也可以去项目的 [release](https://github.com/BlindingDark/wordninja-rs-lua/releases) 页面下载编译好的程序，或者参照项目说明进行手动编译。  
 
 接下来需要在 `easy_en.custom.yaml` 的 `patch` 节点中添加 `easy_en/wordninja_rs_lua_module_path` 选项，以指定程序路径（不指定时的默认路径为 `/usr/lib/lua/5.4/wordninja.so`）  
 然后添加 `easy_en/use_wordninja_rs_lua_module` 选项开启分词  
@@ -74,13 +74,13 @@ patch:
 
 限于 rime 目前的限制，lua native module 还无法正确加载 lua 链接库，导致无法正确运行，下面是临时的解决方案  
 
-* Linux
+* Linux  
   启动输入法时添加 `LD_PRELOAD` 环境变量，如
   ``` shell
   LD_PRELOAD=/usr/lib/liblua5.4.so fcitx5
   ```
 
-* Windows
+* Windows  
   将 `wordninja.dll` 和 `lua53.dll` 解压到 weasel 目录（右键点击 rime 托盘后，选择 `程序文件夹`即可打开 weasel 目录）  
   你可以点击[这里](https://sourceforge.net/projects/luabinaries/files/5.3.6/Windows%20Libraries/Dynamic/lua-5.3.6_Win32_dllw6_lib.zip/download)下载，解压后即可获取到 `lua53.dll`  
 
