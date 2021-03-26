@@ -61,10 +61,11 @@ easy_en 可以使用 [wordninja-rs-lua](https://github.com/BlindingDark/wordninj
   ```
 
 你也可以去项目的 [release](https://github.com/BlindingDark/wordninja-rs-lua/releases) 页面下载编译好的程序，或者参照项目说明进行手动编译。  
+目前 Windows 用户应下载 `wordninja_windows_32_lua53.dll`，然后将下载到的文件重命名为 `wordninja.dll`。  
 
 接下来需要在 `easy_en.custom.yaml` 的 `patch` 节点中添加 `easy_en/wordninja_rs_lua_module_path` 选项，以指定程序路径（不指定时的默认路径为 `/usr/lib/lua/5.4/wordninja.so`）  
 然后添加 `easy_en/use_wordninja_rs_lua_module` 选项开启分词  
-注意，Windows 系统下配置路径也应该使用 `/` 而不应该使用 `\\` 作为路径分隔符  
+注意，Windows 系统下配置路径也应该使用 `/` 而不应该使用 `\` 作为路径分隔符  
 
 ``` yaml
 patch:
@@ -81,7 +82,7 @@ patch:
   ```
 
 * Windows  
-  将 `wordninja.dll` 和 `lua53.dll` 解压到 weasel 目录（右键点击 rime 托盘后，选择 `程序文件夹`即可打开 weasel 目录）  
+  将 `lua53.dll` 解压到 weasel 目录（右键点击 rime 托盘后，选择 `程序文件夹`即可打开 weasel 目录）  
   你可以点击[这里](https://sourceforge.net/projects/luabinaries/files/5.3.6/Windows%20Libraries/Dynamic/lua-5.3.6_Win32_dllw6_lib.zip/download)下载，解压后即可获取到 `lua53.dll`  
 
 ##### wordninja rust
