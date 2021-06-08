@@ -182,6 +182,7 @@ patch:
 以下是需要指定名称的方案  
 
 - 微软双拼 `easy_en:/patch_double_pinyin_mspy`
+- 微软双拼 `easy_en:/patch_terra_pinyin`
 
 ## 卸载
 

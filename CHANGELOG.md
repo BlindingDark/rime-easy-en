@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.1
+
+### new / fix
+
+* patch  
+  - 新增针对 `terra_pinyin` 的特定配置 (fix [#25](https://github.com/BlindingDark/rime-easy-en/issues/25))
+
 ## 0.9
 
 ### new
