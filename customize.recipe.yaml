@@ -12,6 +12,9 @@ install_files: >-
   easy_en.dict.yaml
   easy_en.yaml
   lua/easy_en.lua
+  lua/tools/wordninja.lua
+  lua/tools/wordninja_words.txt
+  lua/tools/ext_words.txt
 
 patch_files:
   ${schema:-luna_pinyin}.custom.yaml:

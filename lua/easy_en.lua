@@ -20,7 +20,8 @@ local function init(env)
    local use_wordninja_rs_lua_module = env.engine.schema.config:get_bool('easy_en/use_wordninja_rs_lua_module')
    local use_wordninja_rs = env.engine.schema.config:get_bool('easy_en/use_wordninja_rs')
    local use_wordninja_py = env.engine.schema.config:get_bool('easy_en/use_wordninja_py')
-   if (not use_wordninja_rs_lua_module) and (not use_wordninja_rs) and (not use_wordninja_py) then
+   local use_wordninja_lua = env.engine.schema.config:get_bool('easy_en/use_wordinija_lua')
+   if (not use_wordninja_rs_lua_module) and (not use_wordninja_rs) and (not use_wordninja_py) and (not use_wordninja_lua) then
       -- default use wordninja_rs_lua_module
       use_wordninja_rs_lua_module = true
    end
@@ -48,6 +49,13 @@ local function init(env)
       end
       return
    end
+   if use_wordninja_lua then
+     local wordninja_lua= require('tools/wordninja')
+     --  init( main_dict, ... ) -- main_dict = nil  default 'wordninja_words.txt'
+     wordninja_lua.init(nil, 'ext_words.txt')
+     return wordninja_lua.split
+   end
+
 end
 
 local function enhance_filter(input, env)
