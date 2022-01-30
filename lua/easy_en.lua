@@ -9,28 +9,29 @@ local function capture(cmd)
 end
 
 local function init(env)
+   local function _pass_func(sentence) return sentence end
    is_split_sentence = env.engine.schema.config:get_bool('easy_en/split_sentence')
    if not is_split_sentence then
-      wordninja_split = function(sentence)
-         return sentence
-      end
+      wordninja_split = _pass_func
       return
    end
 
    local use_wordninja_rs_lua_module = env.engine.schema.config:get_bool('easy_en/use_wordninja_rs_lua_module')
    local use_wordninja_rs = env.engine.schema.config:get_bool('easy_en/use_wordninja_rs')
    local use_wordninja_py = env.engine.schema.config:get_bool('easy_en/use_wordninja_py')
-   if (not use_wordninja_rs_lua_module) and (not use_wordninja_rs) and (not use_wordninja_py) then
+   local use_wordninja_lua = env.engine.schema.config:get_bool('easy_en/use_wordninja_lua')
+   if (not use_wordninja_rs_lua_module) and (not use_wordninja_rs) and (not use_wordninja_py) and (not use_wordninja_lua) then
       -- default use wordninja_rs_lua_module
       use_wordninja_rs_lua_module = true
    end
 
    if use_wordninja_rs_lua_module then
       local wordninja_rs_lua_module_path = env.engine.schema.config:get_string('easy_en/wordninja_rs_lua_module_path')
-      if not string.find(package.cpath, wordninja_rs_lua_module_path, 1, true) then
+      if  wordninja_rs_lua_module_path and not string.find(package.cpath, wordninja_rs_lua_module_path, 1, true) then
          package.cpath = package.cpath .. ";" .. wordninja_rs_lua_module_path
       end
-      wordninja_split = require("wordninja").split
+      local ok,res= pcall(require, 'wordninja')
+      wordninja_split = ok and res.split or _pass_func
       return
    end
 
@@ -48,6 +49,14 @@ local function init(env)
       end
       return
    end
+   if use_wordninja_lua then
+     local wordninja_lua= require('tools/wordninja')
+     --  init( main_dict, ... ) -- main_dict = nil  default 'wordninja_words.txt'
+     wordninja_lua.init(nil, 'ext_words.txt')
+     wordninja_split= wordninja_lua.split
+     return
+   end
+
 end
 
 local function enhance_filter(input, env)
