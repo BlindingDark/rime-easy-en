@@ -8,7 +8,16 @@ local function capture(cmd)
    return s
 end
 
+local function memory_callback(memory, commit)
+   for i, dictentry in ipairs(commit:get()) do
+      memory:update_userdict(dictentry, 1, "")
+   end
+end
+
 local function init(env)
+   env.mem = Memory(env.engine,env.engine.schema)
+   env.mem:memorize(function(commit) memory_callback(env.mem, commit) end)
+
    is_split_sentence = env.engine.schema.config:get_bool('easy_en/split_sentence')
    if not is_split_sentence then
       wordninja_split = function(sentence)
@@ -50,11 +59,28 @@ local function init(env)
    end
 end
 
-local function enhance_filter(input, env)
-   local cands = {}
+local function fini(env)
+   env.mem:disconnect()
+end
 
+local function new_dict_cand(mem, start, _end, text, custom_code)
+   dictentry = DictEntry()
+   dictentry.text = text
+   dictentry.custom_code = custom_code
+   ph = Phrase(mem, "word", start, _end, dictentry)
+
+   return ShadowCandidate(ph:toCandidate(), "word", text .. " ", "📝", "")
+end
+
+local function is_in_dict(mem, text)
+   return mem:user_lookup(text, false) or mem:dict_lookup(text, false, 1)
+end
+
+local function enhance_filter(input, env)
    for cand in input:iter() do
       if (cand.comment:find("☯")) then
+         -- show splited sentence
+         -- don't need to save splited sentence into dict
          if (is_split_sentence) then
             sentence = wordninja_split(cand.text)
             lower_sentence = string.lower(sentence)
@@ -65,10 +91,19 @@ local function enhance_filter(input, env)
 
             yield(Candidate("sentence", cand.start, cand._end, sentence .. " ", "💡"))
          end
+
+         composition = env.engine.context.composition
+         segmentation = composition:toSegmentation()
+         custom_code = segmentation.input
+
+         if (not (cand.text == custom_code)) then
+            yield(new_dict_cand(env.mem, cand.start, cand._end, custom_code, custom_code))
+         end
+         yield(new_dict_cand(env.mem, cand.start, cand._end, cand.text, custom_code))
       else
-         yield(Candidate("word", cand.start, cand._end, cand.text .. " ", cand.comment))
+         yield(UniquifiedCandidate(cand, "word", cand.text .. " ", cand.comment))
       end
    end
 end
 
-return { enhance_filter = { init = init, func = enhance_filter} }
+return { enhance_filter = { init = init, fini = fini, func = enhance_filter} }

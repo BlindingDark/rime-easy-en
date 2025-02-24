@@ -242,15 +242,6 @@ patch:
 
 easy_en 对此项的默认设置为 -1，你可以尝试 0 到 0.5 左右的数值。数值**越大**，英文单词出现的就**越靠前**。  
 
-### 疑难
-
-以下是目前未能解决的问题，欢迎讨论！
-
-- 使用连续输入增强则无法调频  
-  因目前加空格的实现方案受限于 librime-lua 的技术性限制 [librime-lua#11](https://github.com/hchunhui/librime-lua/issues/11)
-- 无法记住用户自造的英文单词  
-  没找到原因，欢迎指教
-
 ## 感谢
 
 easy_en 原作者 [Patricivs](https://github.com/Patricivs)  
