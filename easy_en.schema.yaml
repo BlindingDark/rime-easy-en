@@ -5,7 +5,7 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: "0.10.0"
+  version: "0.10.1"
   author:
     - Patrick <ipatrickmac@gmail.com>
     - BlindingDark <blindingdark@outlook.com>
@@ -46,7 +46,7 @@ engine:
     - punct_translator
   filters:
     - uniquifier
-    - lua_filter@easy_en_enhance_filter
+    - lua_filter@*easy_en*enhance_filter
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA

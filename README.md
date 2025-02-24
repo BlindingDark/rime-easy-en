@@ -133,19 +133,6 @@ patch:
 
 注意，wordninja (python) 要比前两种方式慢上很多倍。
 
-#### 安装连续输入增强功能
-
-由于 plum 目前还不能自动引入 lua 脚本，所以在使用连续输入增强之前还需要手动在 rime 配置目录下的 `rime.lua` 文件中添加以下内容，`rime.lua` 文件不存在可手动创建。
-
-``` lua
--- easy_en_enhance_filter: 连续输入增强
--- 详见 `lua/easy_en.lua`
-local easy_en = require("easy_en")
-easy_en_enhance_filter = easy_en.enhance_filter
-```
-
-以上步骤都做好之后重新部署 rime 即可生效。
-
 #### 不使用连续输入增强
 
 你可以在 `easy_en.custom.yaml` 的 `patch` 节点中添加选项以关闭连续输入增强功能。  
