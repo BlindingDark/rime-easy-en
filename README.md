@@ -32,7 +32,7 @@ bash rime-install BlindingDark/rime-easy-en:customize:schema=luna_pinyin
 
 ![](images/continuous-input-enhancement.gif)
 
-连续输入增强功能可以允许你在单独使用 easy_en 时连续输入单词后，选词时在每个单词后自动增加空格。目前由于技术限制，使用该功能后选词调频将无法生效。  
+连续输入增强功能可以允许你在单独使用 easy_en 时连续输入单词后，选词时在每个单词后自动增加空格。  
 
 连续输入增强功能依托于 [RIME Lua 脚本扩展](https://github.com/hchunhui/librime-lua)，请升级 rime 到最新版以确保可以使用该扩展。  
 Linux 用户需要安装带有 lua 扩展的 librime 版本，以下是部分发行版的安装方式
